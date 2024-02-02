@@ -1,4 +1,4 @@
-export interface PageDataResponse {
+export interface Crawl {
     Url: string;
     CapturedAt: string;
     WordsCount: number;
@@ -12,4 +12,4 @@ export interface StringKeyNumberValueDictionary {
     [key: string]: number;
 }
 
-export default PageDataResponse;
+export default Crawl;

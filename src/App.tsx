@@ -8,10 +8,12 @@ function App() {
   const [selectedMenuItem , setMenuItem] = useState('home');
 
   return (
-    <div className='grid h-screen w-screen dark:bg-gray-800'>
+    <div className='flex flex-col justify-between h-screen w-screen dark:bg-gray-800'>
       <Flowbite>
         <NavbarComponent setSelectedMenuItem={setMenuItem}/>
-        <MainComponent selectedMenuItem={selectedMenuItem} />
+        <main className='mb-auto'>
+          <MainComponent selectedMenuItem={selectedMenuItem} />
+        </main>
         <FooterComponent />
       </Flowbite>
     </div>

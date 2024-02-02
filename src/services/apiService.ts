@@ -1,7 +1,7 @@
 import axios from 'axios';
 import PageConfig from '../Config/pageConfig';
 
-const customAxios = axios.create({
+const axiosInstance = axios.create({
     baseURL: PageConfig.BackendBaseUrl,
     timeout: PageConfig.Timeout,
     headers: {
@@ -10,5 +10,5 @@ const customAxios = axios.create({
   });
 
 export default function UseAxios() {
-    return customAxios;
+    return axiosInstance;
 }
