@@ -1,5 +1,5 @@
 import ContactComponent from "./Contact/ContactComponent";
-import CrawlerComponent from "./CrawlerApp/CrawlerComponent";
+import CrawlerAppComponent from "./CrawlerApp/CrawlerAppComponent";
 
 type Props = {
     selectedMenuItem: string;
@@ -8,7 +8,7 @@ type Props = {
 function MainComponent({selectedMenuItem}: Props) {
     switch(selectedMenuItem) {
         case 'home':
-          return <CrawlerComponent />
+          return <CrawlerAppComponent />
         case 'contact':
           return <ContactComponent />
     }

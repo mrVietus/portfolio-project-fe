@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.17.19",
+    "@tanstack/react-query-devtools": "^5.17.21",
     "autoprefixer": "^10.4.16",
     "axios": "^1.6.0",
     "flowbite-react": "^0.6.4",
@@ -20,6 +22,7 @@
     "tailwindcss": "^3.3.5"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.17.22",
     "@types/node": "^20.8.10",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

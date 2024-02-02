@@ -10,7 +10,7 @@ function CarouselComponent({imageUrls}: Props) {
     }
 
     return (
-        <Carousel pauseOnHover>
+        <Carousel pauseOnHover className='overflow-hidden'>
             {
                 imageUrls.map(url => (
                     <img src={url} alt='carousel-image' key={url} />
