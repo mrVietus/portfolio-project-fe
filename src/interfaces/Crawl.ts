@@ -1,11 +1,11 @@
 export interface Crawl {
+    Id: string;
+    Name: string;
     Url: string;
-    CapturedAt: string;
-    WordsCount: number;
-    TopWords: StringKeyNumberValueDictionary[];
     Images: string[];
-    WasError: boolean;
-    ErrorMessage: string;
+    TopWords: StringKeyNumberValueDictionary[];
+    PageWordsCount: number;
+    CapturedAt: string;
 }
 
 export interface StringKeyNumberValueDictionary {
