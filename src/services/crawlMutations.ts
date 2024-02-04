@@ -3,12 +3,13 @@ import Crawl from "../interfaces/Crawl";
 import { deleteCrawl, saveCrawl } from "./crawlService";
 
 export function useCreateCrawl() {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (data: Crawl) => saveCrawl(data),
-        onSuccess: () => {
-            console.log("Added");
+        onSuccess: (data, variables) => {
+            console.log("Added", data);
+            console.log("Added var", variables);
         },
 
         onSettled: async (_, error) => {
@@ -17,13 +18,13 @@ export function useCreateCrawl() {
                 return;
             }
 
-            await queryClient.invalidateQueries({queryKey: ["crawls"] });
+            // await queryClient.invalidateQueries({queryKey: ["crawls"] }); commented as not yet used.
         }
     });
 }
 
 export function useDeleteCrawl() {
-    const queryClient = useQueryClient();
+    // const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (id: string) => deleteCrawl(id),
@@ -37,7 +38,7 @@ export function useDeleteCrawl() {
                 return;
             }
 
-            await queryClient.invalidateQueries({queryKey: ["crawls"] });
+            // await queryClient.invalidateQueries({queryKey: ["crawls"] }); commented as not yet used.
         }
     });
 }

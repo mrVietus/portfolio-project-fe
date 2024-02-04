@@ -17,7 +17,6 @@ function NewCrawlFormComponent({setCrawlResponse}: Props) {
     const newCrawlQuery = useNewCrawl(url);
 
     const onGetDataClick = async () => {
-        console.log(url);
         setDisableInput(true);
 
         const response = await newCrawlQuery.refetch();

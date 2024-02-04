@@ -7,10 +7,6 @@ import CrawlVisualizationComponent from "./CrawlVisualization/CrawlVisualization
 function CrawlerAppComponent() {
     const [data , setCrawlResponseData] = useState({} as Crawl);
 
-    const onSaveCrawlClick = () => {
-        console.log('new search');
-    };
-
     return (
         <div className='container mx-auto bg-slate-200 dark:bg-slate-700'>
            <div className='mt-10 grid grid-cols-1 lg:grid-cols-4 gap-4 p-4'>
@@ -21,7 +17,7 @@ function CrawlerAppComponent() {
                     <CrawlHistoryComponent />
                 </div>
                 <div className='bg-gray-100 p-4 col-span-1 lg:col-span-4 dark:bg-slate-800'>
-                    <CrawlVisualizationComponent data={data} saveCrawl={onSaveCrawlClick} />
+                    <CrawlVisualizationComponent data={data} />
                 </div>
             </div>
         </div>
