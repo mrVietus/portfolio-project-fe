@@ -1,15 +1,14 @@
-import { Button } from "flowbite-react";
-import PageDataResponse from "../../../interfaces/Crawl";
+import Crawl from "../../../interfaces/Crawl";
 import CarouselComponent from "../../shared/CaruselComponent";
 import CrawledDataTableComponent from "./CrawledDataTableComponent";
-import { HiOutlineBookmark } from 'react-icons/hi';
+import AddCrawlComponent from "./AddCrawlComponent";
 
 type Props = {
-  data: PageDataResponse;
-  saveCrawl: () => void;
+  data: Crawl;
 };
 
-const CrawlVisualizationComponent: React.FC<Props> = ({ data, saveCrawl }) => {
+function CrawlVisualizationComponent({ data }: Props) {
+
   if (data.TopWords === undefined && data.Images === undefined) {
     return (
       <div className='flex flex-col justify-center xl:flex-row xl:justify-between xl:items-center'>
@@ -30,13 +29,11 @@ const CrawlVisualizationComponent: React.FC<Props> = ({ data, saveCrawl }) => {
             Crawling results for page: <a className='text-blue-700' href={data.Url} target="_blank" rel="noopener noreferrer">{data.Url}</a>
           </h5>
           <div className='pt-10 md:pt-0'>
-            <Button color='success' size='xl' onClick={saveCrawl} className='rounded-full max-h-28 md:rounded-3xl md:max-h-12 md:min-w-max items-center'>
-              <HiOutlineBookmark className='text-2xl' />
-            </Button>
+            <AddCrawlComponent data={data} />
           </div>
         </div>
         <div className='py-5'>
-          <p className='text-2xl font-semibold pb-5'>Words found on this page: {data.WordsCount}</p>
+          <p className='text-2xl font-semibold pb-5'>Words found on this page: {data.PageWordsCount}</p>
         </div>
         <div className='flex-col md:flex md:flex-row md:justify-between'>
           <div className='md:py-5 w-full md:w-1/2 h-56 sm:h-64 xl:h-80 2xl:h-96 md:mt-10'>
@@ -53,6 +50,6 @@ const CrawlVisualizationComponent: React.FC<Props> = ({ data, saveCrawl }) => {
         </div>
     </div>
   );
-};
+}
 
 export default CrawlVisualizationComponent;
