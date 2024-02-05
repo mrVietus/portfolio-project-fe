@@ -3,22 +3,17 @@ import Crawl from "../interfaces/Crawl";
 import { deleteCrawl, saveCrawl } from "./crawlService";
 
 export function useCreateCrawl() {
-    // const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (data: Crawl) => saveCrawl(data),
-        onSuccess: (data, variables) => {
-            console.log("Added", data);
-            console.log("Added var", variables);
-        },
-
         onSettled: async (_, error) => {
             if (error) {
                 console.log(error);
                 return;
             }
 
-            // await queryClient.invalidateQueries({queryKey: ["crawls"] }); commented as not yet used.
+            await queryClient.invalidateQueries({queryKey: ["crawls"] });
         }
     });
 }

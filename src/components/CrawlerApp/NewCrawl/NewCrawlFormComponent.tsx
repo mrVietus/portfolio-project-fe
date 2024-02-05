@@ -22,7 +22,6 @@ function NewCrawlFormComponent({setCrawlResponse}: Props) {
         const response = await newCrawlQuery.refetch();
         if(response.isSuccess)
         {
-            console.log(response.data);
             setCrawlResponse(response.data);
         }
         setDisableInput(false);

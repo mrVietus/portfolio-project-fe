@@ -14,7 +14,7 @@ function CrawlerAppComponent() {
                     <NewCrawlFormComponent setCrawlResponse={setCrawlResponseData} />
                 </div>
                 <div className='bg-gray-100 p-4 col-span-1 lg:col-span-2 dark:bg-slate-800'>
-                    <CrawlHistoryComponent />
+                    <CrawlHistoryComponent loadCrawlData={setCrawlResponseData} />
                 </div>
                 <div className='bg-gray-100 p-4 col-span-1 lg:col-span-4 dark:bg-slate-800'>
                     <CrawlVisualizationComponent data={data} />

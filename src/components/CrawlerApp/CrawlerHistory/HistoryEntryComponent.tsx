@@ -11,7 +11,7 @@ type Props = {
 function HistoryEntryComponent({Name, Url, WordsCount, ImagesCount, onClick}: Props) {
 
     return (
-        <div className='flex items-center pb-5 hover:bg-blue-300 p-4 rounded-md cursor-pointer active:bg-blue-500'  onClick={onClick}>
+        <div className='flex items-center pb-5 hover:bg-blue-300 p-4 rounded-md cursor-pointer active:bg-blue-500' onClick={onClick}>
             <Avatar alt='save-crawlr-image' img='fox-save-no-bg.jpeg' rounded={true} size="lg"/>
             <div className='flex-col'>
                 <div className='pl-3 text-xl font-extrabold dark:text-white'>
