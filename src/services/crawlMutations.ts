@@ -19,21 +19,17 @@ export function useCreateCrawl() {
 }
 
 export function useDeleteCrawl() {
-    // const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
     return useMutation({
         mutationFn: (id: string) => deleteCrawl(id),
-        onSuccess: () => {
-            console.log("Removed");
-        },
-
         onSettled: async (_, error) => {
             if (error) {
                 console.log(error);
                 return;
             }
 
-            // await queryClient.invalidateQueries({queryKey: ["crawls"] }); commented as not yet used.
+            await queryClient.invalidateQueries({queryKey: ["crawls"] });
         }
     });
 }

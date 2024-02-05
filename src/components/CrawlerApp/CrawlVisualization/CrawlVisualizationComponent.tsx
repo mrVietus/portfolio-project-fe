@@ -2,14 +2,16 @@ import Crawl from "../../../interfaces/Crawl";
 import CarouselComponent from "../../shared/CaruselComponent";
 import CrawledDataTableComponent from "./CrawledDataTableComponent";
 import AddCrawlComponent from "./AddCrawlComponent";
+import RemoveCrawlComponent from "./RemoveCrawlComponent";
 
 type Props = {
-  data: Crawl;
+  data: Crawl | null;
+  clearCrawlData: React.Dispatch<React.SetStateAction<Crawl | null>>;
 };
 
-function CrawlVisualizationComponent({ data }: Props) {
+function CrawlVisualizationComponent({ data, clearCrawlData }: Props) {
 
-  if (data.TopWords === undefined && data.Images === undefined) {
+  if (data === null || data.TopWords === undefined && data.Images === undefined) {
     return (
       <div className='flex flex-col justify-center xl:flex-row xl:justify-between xl:items-center'>
         <div className='text-5xl font-bold pb-5 text-center xl:ml-52 dark:text-white'>
@@ -29,7 +31,13 @@ function CrawlVisualizationComponent({ data }: Props) {
             Crawling results for page: <a className='text-blue-700' href={data.Url} target="_blank" rel="noopener noreferrer">{data.Url}</a>
           </h5>
           <div className='pt-10 md:pt-0'>
-            <AddCrawlComponent data={data} />
+          {
+            data.Id == null ? (
+              <AddCrawlComponent data={data} />
+            ) : (
+              <RemoveCrawlComponent id={data.Id} name={data.Name} removeCrawlData={clearCrawlData} />
+            )
+          }
           </div>
         </div>
         <div className='py-5'>

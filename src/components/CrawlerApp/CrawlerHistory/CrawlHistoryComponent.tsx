@@ -5,7 +5,7 @@ import { Spinner } from 'flowbite-react';
 import Crawl from "../../../interfaces/Crawl";
 
 type Props = {
-    loadCrawlData: React.Dispatch<React.SetStateAction<Crawl>>;
+    loadCrawlData: React.Dispatch<React.SetStateAction<Crawl | null>>;
 };
 
 function CrawlHistoryComponent({loadCrawlData}: Props) {
@@ -26,6 +26,20 @@ function CrawlHistoryComponent({loadCrawlData}: Props) {
                 Saved Crawls
             </div>
              <div className='h-52 w-full overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-green-400'>
+                {
+                    crawlsQuery.data == null ? (
+                        <div className='flex justify-center items-center pt-10 pb-5 p-4 rounded-md'>
+                            <div className='flex items-center'>
+                                <div className='pr-3 text-xl font-extrabold dark:text-white'>
+                                    No saved crawls...
+                                </div>
+                                <img src='cute-sad-fox.png' alt='sad fox' className='h-28 w-28 ml-auto' />
+                            </div>
+                        </div>
+                    ) : (
+                        null
+                    )
+                }
                 { crawlsQuery.data?.pages.map((group, index) => (
                     <Fragment key={index}>
                         { group.Crawls.map((crawl) => (

@@ -5,7 +5,7 @@ import CrawlHistoryComponent from "./CrawlerHistory/CrawlHistoryComponent";
 import CrawlVisualizationComponent from "./CrawlVisualization/CrawlVisualizationComponent";
 
 function CrawlerAppComponent() {
-    const [data , setCrawlResponseData] = useState({} as Crawl);
+    const [data , setCrawlResponseData] = useState<Crawl | null>(null);
 
     return (
         <div className='container mx-auto bg-slate-200 dark:bg-slate-700'>
@@ -17,7 +17,7 @@ function CrawlerAppComponent() {
                     <CrawlHistoryComponent loadCrawlData={setCrawlResponseData} />
                 </div>
                 <div className='bg-gray-100 p-4 col-span-1 lg:col-span-4 dark:bg-slate-800'>
-                    <CrawlVisualizationComponent data={data} />
+                    <CrawlVisualizationComponent data={data} clearCrawlData={setCrawlResponseData} />
                 </div>
             </div>
         </div>

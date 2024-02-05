@@ -6,7 +6,7 @@ import Crawl from "../../../interfaces/Crawl";
 import { HiOutlineGlobe } from 'react-icons/hi';
 
 type Props = {
-    setCrawlResponse: React.Dispatch<React.SetStateAction<Crawl>>;
+    setCrawlResponse: React.Dispatch<React.SetStateAction<Crawl | null>>;
 };
 
 function NewCrawlFormComponent({setCrawlResponse}: Props) {
