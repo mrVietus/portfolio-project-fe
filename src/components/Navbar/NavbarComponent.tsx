@@ -15,9 +15,9 @@ function NavbarComponent({setSelectedMenuItem}: Props) {
         <header className='sticky top-0 z-50 bg-white p-4 shadow-md mb-1 w-full dark:bg-gray-800 h-28'>
             <Navbar fluid rounded>
                     <Navbar.Brand>
-                        <span className="self-center whitespace-nowrap text-5xl font-bold dark:text-white">SuperCrawler</span>
+                        <span className='self-center whitespace-nowrap text-5xl font-bold dark:text-white'>SuperCrawler</span>
                         <div className='pl-5 pt-2'>
-                            <Avatar alt="SuperCrawler image" img="crawler-company.jpg" rounded={true} />
+                            <Avatar alt='SuperCrawler image' img='crawler-company.jpg' rounded={true} />
                         </div>
                     </Navbar.Brand>
                     <Navbar.Toggle />
@@ -28,7 +28,7 @@ function NavbarComponent({setSelectedMenuItem}: Props) {
                         <Navbar.Link className='text-xl mt-1' href="" onClick={(event) => handleClick(event, 'contact')}>
                             Contact
                         </Navbar.Link>
-                        <DarkThemeToggle className='' />
+                        <DarkThemeToggle />
                     </Navbar.Collapse>
                 </Navbar>
         </header>

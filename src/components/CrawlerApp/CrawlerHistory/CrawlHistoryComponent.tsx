@@ -1,8 +1,9 @@
 import { useCrawl, useCrawls } from "../../../services/crawlQueries";
 import HistoryEntryComponent from "./HistoryEntryComponent";
 import { Fragment, useEffect, useState } from "react";
-import { Spinner } from 'flowbite-react';
 import Crawl from "../../../interfaces/Crawl";
+import HistoryPaginationComponent from "./HistoryPaginationComponent";
+import NoDataToShowComponent from "./NoDataToShowComponent";
 
 type Props = {
     loadCrawlData: React.Dispatch<React.SetStateAction<Crawl | null>>;
@@ -21,25 +22,12 @@ function CrawlHistoryComponent({loadCrawlData}: Props) {
     }, [crawlByIdQuery.data]);
 
     return (
-        <div className='flex px-4 py-2 flex-col w-full h-full dark:bg-gray-800'>
+        <div className='flex px-2 py-2 flex-col w-full h-full dark:bg-gray-800'>
             <div className='text-xl md:text-2xl font-bold tracking-tight pb-4 text-gray-900 dark:text-white'>
                 Saved Crawls
             </div>
              <div className='h-52 w-full overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-green-400'>
-                {
-                    crawlsQuery.data == null ? (
-                        <div className='flex justify-center items-center pt-10 pb-5 p-4 rounded-md'>
-                            <div className='flex items-center'>
-                                <div className='pr-3 text-xl font-extrabold dark:text-white'>
-                                    No saved crawls...
-                                </div>
-                                <img src='cute-sad-fox.png' alt='sad fox' className='h-28 w-28 ml-auto' />
-                            </div>
-                        </div>
-                    ) : (
-                        null
-                    )
-                }
+                <NoDataToShowComponent hasNoData={crawlsQuery.data == null} />
                 { crawlsQuery.data?.pages.map((group, index) => (
                     <Fragment key={index}>
                         { group.Crawls.map((crawl) => (
@@ -48,35 +36,8 @@ function CrawlHistoryComponent({loadCrawlData}: Props) {
                         ))}
                     </Fragment>
                 ))}
-                {
-                    crawlsQuery.hasNextPage ?
-                    (
-                        <div className='flex items-center pb-5 hover:bg-green-300 p-4 rounded-md cursor-pointer active:bg-green-500' onClick={() => crawlsQuery.fetchNextPage()}>
-                            <div className='flex-col w-full'>
-                                <div className='pl-3 text-xl text-center font-extrabold dark:text-white'>
-                                    Load next page..
-                                </div>
-                            </div>
-                        </div>
-                    ) :
-                    null
-                }
-                {
-                    crawlsQuery.isFetchingNextPage ?
-                    (
-                        <div className='flex pb-5 p-4 rounded-md justify-center items-center'>
-                            <div className='flex'>
-                                <div className='pl-3 text-xl font-extrabold dark:text-white'>
-                                    Loading...
-                                </div>
-                                <div className='pl-3'>
-                                    <Spinner color='info' aria-label='Loading crawls' />
-                                </div>
-                            </div>
-                        </div>
-                    ) :
-                    null
-                }
+                <HistoryPaginationComponent hasNextPage={crawlsQuery.hasNextPage} isFetchingNextPage={crawlsQuery.isFetchingNextPage}
+                                            onClick={() => crawlsQuery.fetchNextPage()}/>
             </div>
         </div>
     )
