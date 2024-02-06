@@ -3,6 +3,7 @@ import Crawl from "../../../interfaces/Crawl";
 import { HiOutlineBookmark, HiOutlineStar } from "react-icons/hi";
 import { useEffect, useState } from "react";
 import { useCreateCrawl } from "../../../services/crawlMutations";
+import InputErrorComponent from "../../shared/Errors/InputErrorComponent";
 
 type Props = {
     data: Crawl;
@@ -67,13 +68,8 @@ function AddCrawlComponent({data}: Props) {
                                         onChange={(event) => handleOnChange(event)}
                                     />
                                     <div className='h-10 text-center font-semibold text-red-500'>
-                                    {
-                                        createCrawlMutation.isError && showError ?
-                                            <div>
-                                                <span className='font-bold'>Error!</span> {createCrawlMutation.error?.message}
-                                            </div> :
-                                            null
-                                    }
+                                        <InputErrorComponent showError={createCrawlMutation.isError && showError}
+                                                             errorMessage={createCrawlMutation.error?.message} />
                                     </div>
                                 </div>
                                 <h3 className='mb-5 text-lg font-normal text-gray-500 dark:text-gray-400'>

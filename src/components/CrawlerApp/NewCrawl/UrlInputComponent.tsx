@@ -1,6 +1,7 @@
 import { Button, TextInput } from "flowbite-react";
 import { isUrlValid, prepareUrl } from "../../../Utilities/urlHelper";
 import { useState } from "react";
+import ValidationResultComponent from "../../shared/Validations/ValidationResultComponent";
 
 type Props = {
     disabled: boolean;
@@ -42,29 +43,6 @@ function UrlInputComponent({disabled, setUrl, setCrawlLock}: Props) {
         setInputValue(e.target.value);
     };
 
-    let validationResult = <></>;
-    switch (validationResultType) {
-        case 'valid':
-            validationResult =
-                <div className='flex text-green-500'>
-                    <div className='break-words'>
-                        <span className='font-bold'>Woho!</span> {urlValidationText}
-                    </div>
-                </div>;
-          break;
-        case 'notValid':
-            validationResult =
-                <div className='flex text-red-500'>
-                    <div className='break-words'>
-                        <span className='font-bold'>Oops!</span> {urlValidationText}
-                    </div>
-                </div>;
-          break;
-        case 'blank':
-            validationResult = <></>;
-          break;
-      }
-
     return (
         <div className='grid'>
             <div className='flex'>
@@ -82,7 +60,7 @@ function UrlInputComponent({disabled, setUrl, setCrawlLock}: Props) {
                 </Button>
             </div>
             <div className='h-10'>
-                {validationResult}
+                <ValidationResultComponent validationType={validationResultType} validationText={urlValidationText}  />
             </div>
         </div>
     )

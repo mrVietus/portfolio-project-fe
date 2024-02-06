@@ -25,7 +25,7 @@ function ContactComponent() {
     };
 
     return (
-        <div className='flex justify-center'>
+        <div className='flex justify-center pt-14'>
             <div className='grid w-96'>
                 <Card>
                     <div className='max-w-lg'>

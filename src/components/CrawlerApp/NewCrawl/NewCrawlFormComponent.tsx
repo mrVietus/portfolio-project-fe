@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNewCrawl } from "../../../services/crawlQueries";
 import Crawl from "../../../interfaces/Crawl";
 import { HiOutlineGlobe } from 'react-icons/hi';
+import InputErrorComponent from "../../shared/Errors/InputErrorComponent";
 
 type Props = {
     setCrawlResponse: React.Dispatch<React.SetStateAction<Crawl | null>>;
@@ -41,17 +42,13 @@ function NewCrawlFormComponent({setCrawlResponse}: Props) {
                 </div>
                 <div className='flex pt-2 justify-center'>
                     <div className='flex flex-col items-center pt-2'>
-                        <Button size='lg' isProcessing={newCrawlQuery.isLoading || newCrawlQuery.isFetching} onClick={onGetDataClick} pill disabled={crawlLock}>
+                        <Button size='lg' isProcessing={newCrawlQuery.isLoading || newCrawlQuery.isFetching}
+                                          onClick={onGetDataClick} pill disabled={crawlLock}>
                             Run crawling! <HiOutlineGlobe className='ml-2 text-2xl' />
                         </Button>
                         <div className='h-10 text-center font-semibold text-red-500'>
-                            {
-                            newCrawlQuery.isError ?
-                                <div>
-                                    <span className='font-bold'>Error!</span> An error occurred during crawling your page.
-                                </div> :
-                                null
-                            }
+                            <InputErrorComponent showError={newCrawlQuery.isError}
+                                                 errorMessage="An error occurred during crawling your page." />
                         </div>
                     </div>
                 </div>
